@@ -55,13 +55,18 @@
         cursor: pointer;
       }
 
+      button:focus-visible {
+        outline: 3px solid #111;
+        outline-offset: 3px;
+      }
+
       .yes {
-        background: #2f855a;
+        background: #165437;
         color: #fff;
       }
 
       .no {
-        background: #c53030;
+        background: #7f1010;
         color: #fff;
       }
 
@@ -81,20 +86,20 @@
       <section id="question-one">
         <h1>Ben je in of dicht bij Nijmegen?</h1>
         <div class="buttons">
-          <button type="button" class="yes" id="q1-yes">Ja</button>
-          <button type="button" class="no" id="q1-no">Nee</button>
+          <button type="button" class="yes" id="q1-yes" aria-label="Ja, ik ben in of dicht bij Nijmegen">Ja</button>
+          <button type="button" class="no" id="q1-no" aria-label="Nee, ik ben niet in of dicht bij Nijmegen">Nee</button>
         </div>
       </section>
 
       <section id="question-two">
         <h2>Ben je buiten?</h2>
         <div class="buttons">
-          <button type="button" class="yes" id="q2-yes">Ja</button>
-          <button type="button" class="no" id="q2-no">Nee</button>
+          <button type="button" class="yes" id="q2-yes" aria-label="Ja, ik ben buiten">Ja</button>
+          <button type="button" class="no" id="q2-no" aria-label="Nee, ik ben niet buiten">Nee</button>
         </div>
       </section>
 
-      <p id="result"></p>
+      <p id="result" role="status" aria-live="polite" tabindex="-1"></p>
     </main>
 
     <script>
@@ -107,9 +112,11 @@
         questionTwo.style.display = 'none';
         result.style.display = 'block';
         result.textContent = text;
+        result.focus();
       };
 
       document.getElementById('q1-yes').addEventListener('click', () => {
+        questionOne.style.display = 'none';
         questionTwo.style.display = 'block';
       });
 
